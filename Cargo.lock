@@ -274,14 +274,14 @@ dependencies = [
 
 [[package]]
 name = "anonymity-network"
-version = "0.1.0"
+version = "0.1.1"
 dependencies = [
  "actix-rt",
  "actix-web",
+ "dotenv",
+ "failure",
  "reqwest",
- "serde",
  "tokio",
- "yaml-rust",
 ]
 
 [[package]]
@@ -484,6 +484,12 @@ dependencies = [
  "quote",
  "syn",
 ]
+
+[[package]]
+name = "dotenv"
+version = "0.15.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "77c90badedccf4105eca100756a0b1289e191f6fcbdadd3cee1d2f614f97da8f"
 
 [[package]]
 name = "dtoa"
@@ -1884,13 +1890,4 @@ checksum = "d59cefebd0c892fa2dd6de581e937301d8552cb44489cdff035c6187cb63fa5e"
 dependencies = [
  "winapi 0.2.8",
  "winapi-build",
-]
-
-[[package]]
-name = "yaml-rust"
-version = "0.4.3"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "65923dd1784f44da1d2c3dbbc5e822045628c590ba72123e1c73d3c230c4434d"
-dependencies = [
- "linked-hash-map",
 ]

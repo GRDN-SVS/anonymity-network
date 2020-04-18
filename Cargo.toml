@@ -1,6 +1,6 @@
 [package]
 name = "anonymity-network"
-version = "0.1.0"
+version = "0.1.1"
 authors = ["Rafael <rvillegasm@eafit.edu.co>"]
 edition = "2018"
 
@@ -13,5 +13,5 @@ actix-rt = "1"
 reqwest = { version = "0.10", features = ["json"] }
 tokio = { version = "0.2", features = ["full"] }
 
-serde = { version = "1.0.104", features = ["derive"] }
-yaml-rust = "0.4.3"
+dotenv = "0.15.0"
+failure = "0.1.7"
