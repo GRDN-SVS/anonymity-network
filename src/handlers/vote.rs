@@ -1,16 +1,18 @@
-use actix_web::{post, web, HttpResponse, Responder};
+use actix_web::{get, web, HttpResponse, Responder, Result};
 use reqwest;
 
-use crate::{config::Config, models::Vote};
+use crate::{config::Config, errors::ConnectionError};
 
-#[post("/forward")]
-pub async fn forward(vote: web::Json<Vote>, config_data: web::Data<Config>) -> impl Responder {
+#[get("/forward")]
+pub async fn forward(config_data: web::Data<Config>) -> Result<impl Responder, ConnectionError> {
     // send the request to the next node
     let client = reqwest::Client::new();
-    let res = client.post(config_data.get_next_node())
-        .json(&vote.into_inner())
+    let res = match client.get(config_data.get_next_node())
         .send()
-        .await;
+        .await {
+            Ok(r) => r,
+            Err(_) => return Err(ConnectionError { conn_name: "forward" })
+        };
 
-    HttpResponse::Ok().body("Vote Sent Correctly!")
+    Ok(HttpResponse::Ok().body(res.text().await.expect("Failed to transform request body into text")))
 }

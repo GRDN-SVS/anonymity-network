@@ -1,11 +1,14 @@
 use actix_web::{App, HttpServer};
+use dotenv::dotenv;
 
 mod config;
 mod handlers;
-mod models;
+mod errors;
 
 #[actix_rt::main]
 async fn main() -> std::io::Result<()> {
+    dotenv().ok();
+
     HttpServer::new(|| {
         // Read configuration file into a struct
         let node_config = match config::Config::new() {
