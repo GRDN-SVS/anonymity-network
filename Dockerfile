@@ -1,8 +1,8 @@
-FROM rust:1.31
+FROM rust:latest 
 
-WORKDIR /usr/src/myapp
+WORKDIR /usr/src/anonymity-network
 COPY . .
 
-RUN cargo install --path .
+RUN cargo build --release
 
-CMD ["grdn"]
+CMD ["./target/release/anonymity-network"]
