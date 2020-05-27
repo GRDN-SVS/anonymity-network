@@ -5,7 +5,7 @@ use crate::{config::Config, errors::ConnectionError};
 
 #[get("/forward")]
 pub async fn forward(config_data: web::Data<Config>) -> Result<impl Responder, ConnectionError> {
-    // send the request to the next node
+    // send the request to the next node   
     let client = reqwest::Client::new();
     let res = match client.get(config_data.get_next_node())
         .send()
