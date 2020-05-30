@@ -1,6 +1,6 @@
 use actix_web::{App, HttpServer};
 use dotenv::dotenv;
-
+use std::env;
 mod config;
 mod handlers;
 mod errors;
@@ -21,7 +21,7 @@ async fn main() -> std::io::Result<()> {
 
         App::new().data(node_config).service(handlers::vote::forward)
     })
-    .bind("127.0.0.1:8088")?
+    .bind(format!("{}:8088", &env::var("APP_URL").expect("No APP_URL in .env")))?
     .run()
     .await
 }
