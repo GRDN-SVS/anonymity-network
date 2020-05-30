@@ -1,8 +1,10 @@
-FROM rust:latest 
+FROM rust:slim-stretch
+
+RUN apt update && apt install libssl-dev pkg-config build-essential libpq-dev -y
 
 WORKDIR /usr/src/anonymity-network
 COPY . .
 
-RUN cargo build --release
+RUN cargo install --path .
 
-CMD ["./target/release/anonymity-network"]
+CMD ["/usr/local/cargo/bin/anonymity-network"]
