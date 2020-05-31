@@ -11,7 +11,7 @@ on:
       - v*
 
 env:
-  IMAGE_NAME: anonimity-net
+  IMAGE_NAME: anonymity-net
 
 jobs:
   # Push image to GitHub Packages.
